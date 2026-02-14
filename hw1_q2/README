@@ -1,0 +1,111 @@
+HW1: ArrayLists
+Author: Cooper Golemme (cgolem01)
+Date: January, 2023
+--------
+Purpose: 
+--------
+Create an ArrayList to store data and implement outlined list functionality
+
+---------------
+Acknowledgments:
+---------------
+1. Stack Overflow for Valgrind error messages
+2. ArrayLists & Big 3 Lecture
+
+-----
+Files:
+-----
+    CharArrayList.h:
+        Define functionality of the CharArrayList class
+
+    CharArrayList.cpp
+        Implementation of methods defined in CharArrayList.h
+
+    unit_test.h
+        Tests for functional correctness of CharArrayList methods
+
+    Makefile
+        To compile above files, and run tests outlined in unit_test.h
+
+--------------
+How to Compile:
+--------------
+Run the Make File
+
+---------------
+Data Structures:
+---------------
+ArrayLists: a dynamically allocated array of varying size that can grow and 
+            shrink depending on need. It has the advantage of being able to 
+            change size, while keeping the O(1) get element of a traditional 
+            array. Disadvantages are the time it takes to insert and remove
+            elements not at the end of the array. It has a time complexity of
+            O(n) to add.
+
+-------
+Testing:
+-------
+    I used assert statements to make sure that methods preform expectedresults.
+    Tested methods a variety of situations. I also used cerr statments to see
+    what was going on when I didn't understand why a test was failing. For
+    simmilar methods (i.e popBack, popFront), I used very simmilar tests because
+    they have simmilar functionality. I wrote and tested isEmpty and toString 
+    first becuase the many other tests depend on their correctness. Similarly,
+    I tested elementAt before testing any other functions. For other functions,
+    I tried to mirror the tests provided for insertAt, using the same edge cases
+    as well as some new ones. Common edge cases and exceptions are outlined 
+    below.
+    I created getCapacity function to test the shrink function but commented it 
+    out for the final solution
+
+    Common Edge Cases:
+        1. Beginning of list
+        2. End of list
+        3. Empty list 
+        4. Single element list
+    Common Exceptions:
+        1. index input greater than range of list
+        2. index input less than 0
+        3. function calls on empty lists
+
+----
+Time:
+----
+    About 13 hours
+    The majority of the time was spent on testing and writing comments / 
+    checking for style issues
+
+--------------
+Execution time:
+--------------
+Insertion (fastest to slowest) (in nanoseconds)
+    1. pushAtBack 100 times : 573ns
+    2. insertAt middle of list 100 times : 1490654ns
+    3. pushAtFront 100 times : 2637525ns
+Removal (fastest to slowest) (in nanoseconds)
+    1. popFromBack 100 times : 396ns
+    2. removeAt middle of list 100 times : 1686612ns
+    3. popFromFront 100 times : 3349499ns
+Access (fastest to slowest) (in nanoseconds)
+    1. call elementAt() for middle of list 100 times : 480ns
+    2. call last() 100 times : 597ns
+    3. call first() 100 times : 619ns
+
+Comments:
+    The fastest operations are the operations that have a time complexity of 
+    O(1). This includes push at back and pop from back because the back is 
+    always defined as data[num_items-1] so decrementing the num_items removes 
+    last element. With the front operations however, you need to move the rest
+    of the elements down which is an O(n) time complexity operation because 
+    they require a for loop which scales with the number of elements in the 
+    list. This is why preforming these operations from the middle (insert 
+    middle, remove middle) take about half as long as at the front. All access 
+    operations are the same O(1) complexity so first, last or anywhere in the 
+    list take the same amount of time.
+
+    
+
+
+
+
+
